@@ -17,29 +17,26 @@ jobs:
         with:
           node-version: "20.x"
 
+      - name: Change directory
+        run: cd language-assistant
+
       - name: Install dependencies
         run: npm install
-        working-directory: ./language-assistant
 
       - name: Build
         run: npm run build
-        working-directory: ./language-assistant
-
-      - name: LS
-        run: ls -la
-        working-directory: ./language-assistant
-
-      - name: List output for verification
-        run: ls -la
-        working-directory: ./language-assistant/.next
 
       - name: Copy web.config to output directory
-        run: cp web.config ./language-assistant/.next/
-        working-directory: ./language-assistant
+        run: cp web.config ./.next/standalone/
+        working-directory: language-assistant
+
+      - name: List files in the standalone directory for verification
+        run: ls -la .next/standalone/
+        working-directory: language-assistant
 
       - name: "Deploy to Azure Web App"
         uses: azure/webapps-deploy@v2
         with:
           app-name: "ai-language-instructor"
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: ./language-assistant/.next/standalone
+          package: language-assistant/.next/standalone

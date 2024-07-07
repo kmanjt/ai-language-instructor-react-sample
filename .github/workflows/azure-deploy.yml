@@ -17,14 +17,13 @@ jobs:
         with:
           node-version: "20.x"
 
-      - name: Change directory
-        run: cd language-assistant
-
       - name: Install dependencies
         run: npm install
+        working-directory: language-assistant
 
       - name: Build
         run: npm run build
+        working-directory: language-assistant
 
       - name: Copy web.config to output directory
         run: cp web.config ./.next/standalone/

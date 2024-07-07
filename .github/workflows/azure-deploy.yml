@@ -25,6 +25,10 @@ jobs:
         run: npm run build
         working-directory: ./language-assistant
 
+      - name: LS
+        run: ls -la
+        working-directory: ./language-assistant
+
       - name: Copy web.config to output directory
         run: cp web.config ./language-assistant/.next/standalone/
         working-directory: ./language-assistant

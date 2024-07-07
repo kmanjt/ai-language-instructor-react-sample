@@ -29,13 +29,13 @@ jobs:
         run: ls -la
         working-directory: ./language-assistant
 
+      - name: List output for verification
+        run: ls -la
+        working-directory: ./language-assistant/.next
+
       - name: Copy web.config to output directory
         run: cp web.config ./language-assistant/.next/standalone/
         working-directory: ./language-assistant
-
-      - name: List output for verification
-        run: ls -la
-        working-directory: ./language-assistant/.next/standalone
 
       - name: "Deploy to Azure Web App"
         uses: azure/webapps-deploy@v2

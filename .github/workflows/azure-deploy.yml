@@ -34,7 +34,7 @@ jobs:
         working-directory: ./language-assistant/.next
 
       - name: Copy web.config to output directory
-        run: cp web.config ./language-assistant/.next/standalone/
+        run: cp web.config ./language-assistant/.next/
         working-directory: ./language-assistant
 
       - name: "Deploy to Azure Web App"

@@ -27,6 +27,10 @@ jobs:
           mv .next/static .next/standalone/.next/static
           # mv public .next/standalone/public
         working-directory: language-assistant
+        env:
+          NEXT_PUBLIC_AZURE_SUBSCRIPTION_KEY: ${{ secrets.NEXT_PUBLIC_AZURE_SUBSCRIPTION_KEY }}
+          NEXT_PUBLIC_OPENAI_API_KEY: ${{ secrets.NEXT_PUBLIC_OPENAI_API_KEY }}
+          NEXT_PUBLIC_OPENAI_ENDPOINT: ${{ secrets.NEXT_PUBLIC_OPENAI_ENDPOINT }}
 
       - name: List files in the standalone directory for verification
         run: ls -la .next/standalone/

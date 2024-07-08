@@ -26,6 +26,7 @@ jobs:
           npm run build
           mv .next/static .next/standalone/.next/static
           # mv public .next/standalone/public
+        working-directory: language-assistant
 
       - name: List files in the standalone directory for verification
         run: ls -la .next/standalone/

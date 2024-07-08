@@ -21,13 +21,11 @@ jobs:
         run: npm install
         working-directory: language-assistant
 
-      - name: Build
-        run: npm run build
-        working-directory: language-assistant
-
-      - name: Copy web.config to output directory
-        run: cp web.config ./.next/standalone/
-        working-directory: language-assistant
+      - name: Build Next.js app
+        run: |
+          npm run build
+          mv .next/static .next/standalone/.next/static
+          # mv public .next/standalone/public
 
       - name: List files in the standalone directory for verification
         run: ls -la .next/standalone/

@@ -22,6 +22,7 @@
     const [avatarSynthesizer, setAvatarSynthesizer] = useState<sdk.AvatarSynthesizer | null>(null);
     const [data, setData] = useState<TokenData>({});
     const [iceData, setIceData] = useState<ICEServerData | null>(null);
+    const [toggle, setToggle] = useState<boolean>(false);
 
     const subscriptionKey: string = process.env.NEXT_PUBLIC_AZURE_SUBSCRIPTION_KEY as string;
     const serviceRegion: string = "westeurope";
@@ -38,7 +39,6 @@
             username: iceCredentials.iceServerUsername,
             password: iceCredentials.iceServerPassword
           });
-          await setupAvatarAndWebRTC();
         } catch (error) {
           console.error('Failed to fetch ICE credentials:', error);
         }
@@ -136,6 +136,13 @@
     return (
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <div>
+          {!toggle && <button 
+              onClick={() => { setupAvatarAndWebRTC(); setToggle(true); }}
+              className="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-lg shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+            >
+              Start Learning
+            </button>
+          }
           <video ref={videoRef} autoPlay playsInline style={{ width: '100%', maxHeight: '400px' }} />
           <audio ref={audioRef} autoPlay />
           {transcript && <p>Heard: {transcript}</p>}
